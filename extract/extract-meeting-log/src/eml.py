@@ -32,6 +32,7 @@ opt = parser.parse_args()
 #print "LogPath: %s" % opt.logPath
 
 date = opt.date.translate(string.maketrans("-", "/"))
+linesFound = 0
 
 with open(opt.outputPath, 'w') as o:
     for path in opt.logPath:
@@ -39,3 +40,6 @@ with open(opt.outputPath, 'w') as o:
             for line in f:
                 if line.startswith("[%s" % date):
                     o.write(line)
+                    linesFound += 1
+                    
+print "Found %s lines for %s" % (linesFound, date)                    
