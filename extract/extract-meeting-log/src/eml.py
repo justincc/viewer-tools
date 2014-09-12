@@ -35,11 +35,20 @@ date = opt.date.translate(string.maketrans("-", "/"))
 linesFound = 0
 
 with open(opt.outputPath, 'w') as o:
+    
+    o.write('''<pre style="white-space: pre-wrap; 
+white-space: -moz-pre-wrap;
+white-space: -pre-wrap;
+white-space: -o-pre-wrap; 
+word-wrap: break-word">''')
+
     for path in opt.logPath:
         with open(path) as f:
             for line in f:
                 if line.startswith("[%s" % date):
                     o.write(line)
                     linesFound += 1
+                    
+    o.write("</pre>")
                     
 print "Found %s lines for %s" % (linesFound, date)                    
