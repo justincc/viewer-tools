@@ -1,6 +1,6 @@
-= README =
+# README #
 
-== extract-meeting-log ==
+## extract-meeting-log ##
 Tool for extracting a log for a particular day from a viewer chat file and putting into a format suitable for displaying
 properly on mediawiki.
 
