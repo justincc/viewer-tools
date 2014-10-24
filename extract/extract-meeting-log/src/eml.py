@@ -2,7 +2,9 @@
 
 import argparse
 import datetime
+import os.path
 import string
+import sys
 
 ############
 ### MAIN ###
@@ -31,6 +33,11 @@ opt = parser.parse_args()
 #print "Date: %s" % opt.date
 #print "LogPath: %s" % opt.logPath
 
+for path in opt.logPath:
+    if not os.path.isfile(path):
+        print >> sys.stderr, "ERROR: [%s] input log is not a file.  Exiting." % path
+        sys.exit(1)
+
 date = opt.date.translate(string.maketrans("-", "/"))
 linesFound = 0
 
@@ -51,4 +58,4 @@ word-wrap: break-word">''')
                     
     o.write("</pre>")
                     
-print "Found %s lines for %s" % (linesFound, date)                    
+print "Found %s lines for %s" % (linesFound, date)
